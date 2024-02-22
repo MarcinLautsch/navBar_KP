@@ -1,0 +1,98 @@
+:root {
+	--body-bg: #123;
+	--nav-bg: #234;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: system-ui, Roboto;
+	color: white;
+	background-color: var(--body-bg);
+	min-height: 200vh;
+	display: grid;
+	grid-template-columns: 15rem 1fr;
+	gap: 3rem;
+}
+
+nav {
+	position: sticky;
+	background-color: var(--nav-bg);
+	padding-block: 2rem;
+}
+
+.nav-list {
+	list-style: none;
+	display: grid;
+	gap: 1rem;
+	padding-block: 2rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.nav-list li {
+	padding: 1rem 2rem;
+	margin-left: 2rem;
+	border-radius: 100vh 0 0 100vh;
+}
+
+.nav-list li.active {
+	view-transition-name: activeNav;
+	position: relative;
+	background-color: var(--body-bg);
+}
+
+::view-transition-group(activeNav) {
+	animation-duration: 1s;
+}
+
+.nav-list li:nth-child(1) a {
+	view-transition-name: test;
+}
+
+.nav-list li:nth-child(2) a {
+	view-transition-name: test-2;
+}
+
+.nav-list li:nth-child(3) a {
+	view-transition-name: test-3;
+}
+
+.nav-list .active::before,
+.nav-list .active::after {
+	--border-radius: 2rem;
+
+	content: '';
+	position: absolute;
+	width: var(--border-radius);
+	height: var(--border-radius);
+	right: 0;
+	background-color: var(--nav-bg);
+}
+
+.nav-list .active::before {
+	top: calc(var(--border-radius) * -1);
+	border-radius: 0 0 100vw 0;
+	box-shadow: 10px 10px 0 10px var(--body-bg);
+}
+.nav-list .active::after {
+	bottom: calc(var(--border-radius) * -1);
+	border-radius: 0 100vw 0 0;
+	box-shadow: 10px -10px 0 10px var(--body-bg);
+}
+
+.nav-list a {
+	color: white;
+	text-decoration: none;
+	position: relative;
+	z-index: 10;
+}
+
+h1 {
+	padding-top: 2rem;
+	font-size: 3rem;
+}
